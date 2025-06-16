@@ -1,0 +1,19 @@
+.field-pair {
+  display: flex;
+  gap: 1rem;
+}
+
+.field {
+  flex: 1;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.25rem; /* Adjusts the space between label and input */
+  margin-left: 0.5rem; /* Adjusts the alignment of the label to match the placeholder */
+  font-weight: bold; /* Optional: Makes the label text bold */
+}
+
+.field input {
+  padding-left: 0.5rem; /* Ensure padding is consistent between label and input */
+}

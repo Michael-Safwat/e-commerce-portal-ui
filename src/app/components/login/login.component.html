@@ -1,0 +1,42 @@
+<div *ngIf="sessionExpired" class="p-message p-message-warning p-mb-3 block p-error">
+  <i class="pi pi-exclamation-triangle p-mr-2"></i>
+  Your session has expired. Please log in again.
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+  <p-card header="Login" [style]="{width:'360px'}">
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email"
+             type="text"
+             pInputText formControlName="email"
+             class="w-full"
+             name="email"
+             placeholder="enter your email"
+      />
+      <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+        <div *ngIf="email.errors?.['email']">Email should be valid.</div>
+      </small>
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password"
+             type="password"
+             pInputText formControlName="password"
+             class="w-full"
+             name="password"
+             placeholder="enter your password"
+      />
+      <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
+        <div *ngIf="password.errors?.['required']">Password is required.</div>
+      </small>
+    </div>
+
+    <p-button label="Log In" styleClass="w-full" [disabled]="loginForm.invalid" type="submit"></p-button>
+    <div class="mt-2">
+      Not a member? <a routerLink="/register">Register</a>
+    </div>
+  </p-card>
+</form>
