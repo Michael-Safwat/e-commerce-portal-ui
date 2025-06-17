@@ -10,18 +10,14 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MyInterceptor} from "./Interceptor/my.interceptor";
 import {TokenInterceptor} from "./Interceptor/token.interceptor";
-import {MyProfileComponent} from './components/my-profile/my-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { DashboardComponent } from './dashboard/dashboard.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    MyProfileComponent,
-    LandingPageComponent,
     DashboardComponent,
   ],
   imports: [

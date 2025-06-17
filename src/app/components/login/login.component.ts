@@ -9,8 +9,7 @@ import {HttpErrorResponse} from "@angular/common/http";
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-    sessionExpired: boolean = false;
+export class LoginComponent{
     successMessage: string = ''; // Property to hold success message
     errorMessage: string = '';   // Property to hold error message
     isLoading: boolean = false;  // Property to manage loading state
@@ -26,22 +25,6 @@ export class LoginComponent implements OnInit {
                 private route: ActivatedRoute,) {
     }
 
-    ngOnInit() {
-        this.route.queryParams.subscribe(params => {
-            if (params['sessionExpired']) {
-                this.sessionExpired = true;
-                this.errorMessage = 'Your session has expired. Please log in again.'; // Set an error message
-            }
-        })
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.documentElement.setAttribute('data-bs-theme', 'dark');
-        } else {
-            // If no theme or not dark, default to dark for this admin login
-            document.documentElement.setAttribute('data-bs-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    }
 
     get email() {
         return this.loginForm.controls['email'];
@@ -52,13 +35,11 @@ export class LoginComponent implements OnInit {
     }
 
     loginUser() {
-        // Clear previous messages
         this.successMessage = '';
         this.errorMessage = '';
-        this.sessionExpired = false; // Clear session expired message on new attempt
-        this.isLoading = true; // Set loading state
+        this.isLoading = true;
 
-        this.loginForm.markAllAsTouched(); // Trigger validation messages
+        this.loginForm.markAllAsTouched();
 
         if (this.loginForm.valid) {
             const email = this.loginForm.value.email!;
