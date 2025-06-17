@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {passwordMatchValidator} from "../../shared/password-match.directive";
 import {AuthService} from "../../services/authentication/auth.service";
-import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
 import {User} from "../../models/User";
 
@@ -23,7 +22,6 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private messageService: MessageService,
               private router: Router) {
   }
 
@@ -49,11 +47,9 @@ export class RegisterComponent {
 
     this.authService.registerUser(postData as User).subscribe((res: any) => {
         console.log(res);
-        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Registered Successfully'});
         this.router.navigate(['login']);
       },
       () => {
-        this.messageService.add({severity: 'error', summary: 'Error', detail: 'Register form input not valid!'});
       })
   }
 }
