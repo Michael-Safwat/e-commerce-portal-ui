@@ -1,0 +1,29 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel"> Welcome Admin</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body ">
+
+    <div class=><p>lorem</p></div>
+
+
+    <div>
+
+      <ul class="list-group">
+        <li>
+          <button class="btn" (click)="manageAdmins()"><i class="bi bi-briefcase"></i> manage admins</button>
+        </li>
+        <li>
+          <button class="btn" (click)="manageProducts()"><i class="bi bi-box"></i> manage products</button>
+        </li>
+        <li>
+          <button class="btn" (click)="openProfile()"><i class="bi bi-file-earmark-person-fill"></i> profile</button>
+        </li>
+        <li>
+          <button class="btn text-danger" (click)="logout()"><i class="bi bi-x-octagon"></i> sign out</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
