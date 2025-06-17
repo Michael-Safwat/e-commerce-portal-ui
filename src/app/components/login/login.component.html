@@ -1,83 +1,56 @@
-<!-- src/app/login/login.component.html -->
-<div class="login-page-background d-flex align-items-center justify-content-center vh-100">
-  <div class="card p-4 p-md-5 bg-body rounded-lg shadow-xl border border-secondary" style="max-width: 500px;">
-    <div class="card-body">
-      <h2 class="card-title text-center text-body-emphasis mb-4 display-6 fw-bold">
-        Admin Login
-      </h2>
-
-      <!-- Session Expired Message -->
-      <div *ngIf="sessionExpired" class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{ errorMessage }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="sessionExpired = false; errorMessage = ''"></button>
-      </div>
-
-      <!-- Success Feedback Message -->
-      <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ successMessage }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="successMessage = ''"></button>
-      </div>
-
-      <!-- Error Feedback Message -->
-      <div *ngIf="errorMessage && !sessionExpired" class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ errorMessage }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="errorMessage = ''"></button>
-      </div>
-
-      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-        <div class="mb-3">
-          <label for="emailInput" class="form-label text-secondary">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="emailInput"
-            formControlName="email"
-            placeholder="name@example.com"
-            [class.is-invalid]="email?.invalid && email?.touched"
-          >
-          <!-- Invalid feedback for email -->
-          <div *ngIf="email?.invalid && email?.touched" class="invalid-feedback">
-            <div *ngIf="email?.errors?.['required']">
-              Email is required.
-            </div>
-            <div *ngIf="email?.errors?.['email']">
-              Please enter a valid email address.
+<div class="container-fluid h-100 ">
+  <div class="row h-100">
+    <div class="h-100 col d-flex align-items-center justify-content-center">
+      <div class="shadow-lg rounded-3 card col-8 p-5">
+        <h2 class="text-center mb-4">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+          <div class="mb-3">
+            <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email"
+                   [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+                   [class.is-valid]="email.valid && (email.dirty || email.touched)">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
             </div>
           </div>
-        </div>
-
-        <div class="mb-4">
-          <label for="passwordInput" class="form-label text-secondary">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="passwordInput"
-            formControlName="password"
-            placeholder="Enter your password"
-            [class.is-invalid]="password?.invalid && password?.touched"
-          >
-          <!-- Invalid feedback for password -->
-          <div *ngIf="password?.invalid && password?.touched" class="invalid-feedback">
-            <div *ngIf="password?.errors?.['required']">
-              Password is required.
-            </div>
-            <div *ngIf="password?.errors?.['minlength']">
-              Password must be at least 6 characters long.
-            </div>
+          <div class="mb-3">
+              <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"
+                     [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
+                     [class.is-valid]="password.valid && (password.dirty || password.touched)">
+              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+                <div *ngIf="password.errors?.['required']">Password is required.</div>
+              </div>
           </div>
-        </div>
 
-        <div class="d-grid mb-3">
-          <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm" [disabled]="isLoading">
-            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            <span *ngIf="!isLoading">Login</span>
-          </button>
-        </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || isLoading">
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              {{ isLoading ? 'Logging in...' : 'Login' }}
+            </button>
+          </div>
+          <div *ngIf="successMessage" class="alert alert-success mt-3 text-center" role="alert">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3 text-center" role="alert">
+            {{ errorMessage }}
+          </div>
 
-        <div class="text-center">
-          <a href="#" class="text-info text-decoration-none" (click)="goToLandingPage()">Back to Home</a>
+        </form>
+      </div>
+    </div>
+
+    <div class="h-100 bg-primary col d-flex align-items-center justify-content-center">
+      <div class="text-white d-flex flex-column">
+        <h2>
+          Welcome to our E-commerce admin portal
+        </h2>
+        <div class="align-self-center">
+          <p>
+            Admins portal with access to users and products management
+          </p>
         </div>
-      </form>
+      </div>
     </div>
   </div>
+
 </div>

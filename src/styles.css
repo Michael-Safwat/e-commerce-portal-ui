@@ -1,0 +1,9 @@
+html, body {
+  height: 100%; /* Make html and body take the full viewport height */
+  margin: 0;   /* Remove default body margin, which can cause scrollbars */
+  padding: 0;  /* Remove default body padding */
+}
+
+ul{
+  list-style-type:none;
+}
