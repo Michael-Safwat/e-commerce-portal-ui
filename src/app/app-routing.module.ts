@@ -3,8 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {MyProfileComponent} from "./components/my-profile/my-profile.component";
+import {LandingPageComponent} from "./landing-page/landing-page.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 const routes: Routes = [
+  {
+    path:'landing-page',
+    component: LandingPageComponent
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -18,10 +24,14 @@ const routes: Routes = [
     component: MyProfileComponent
   },
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: "dashboard",
+    component: DashboardComponent
   },
   {
-    path: '**', redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: 'landing-page', pathMatch: 'full'
+  },
+  {
+    path: '**', redirectTo: 'landing-page', pathMatch: 'full'
   }
 ];
 

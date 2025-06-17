@@ -1,0 +1,48 @@
+.vh-100 {
+  min-height: 100vh;
+}
+
+/* Custom background gradient for a professional look */
+.landing-page-background {
+  /* Using a darker, more muted gradient for an admin/dark mode feel */
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); /* Darker blue-grey gradient */
+}
+
+/* Apply Inter font globally to the page */
+/* You would ideally add this import in your main styles.css or angular.json */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+body {
+  font-family: 'Inter', sans-serif;
+  /* Adjust default body text color for dark mode context if needed,
+     though Bootstrap's data-bs-theme handles much of this */
+  color: var(--bs-body-color); /* Uses Bootstrap's theme-aware body text color */
+}
+
+/* Enhancing the shadow on the main content box for more depth */
+.shadow-xl {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Darker shadow for dark mode */
+}
+
+/* Further customize Bootstrap primary button for a subtle lift */
+.btn-primary {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.5); /* Enhanced shadow for dark mode hover */
+}
+
+/* Adjusting text for smaller screens if needed (Bootstrap handles much of this) */
+@media (max-width: 576px) {
+  .display-3 {
+    font-size: 2.5rem; /* Smaller heading on small screens */
+  }
+  .lead {
+    font-size: 1rem; /* Smaller lead text on small screens */
+  }
+  .px-md-5 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
