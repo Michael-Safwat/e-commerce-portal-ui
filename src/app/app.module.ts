@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AdminManagementComponent } from './components/admin-management/admin-management.component';
+import { ProductManagementComponent } from './components/product-management/product-management.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     DashboardComponent,
     SidebarComponent,
     NavbarComponent,
+    AdminManagementComponent,
+    ProductManagementComponent,
   ],
   imports: [
     BrowserModule,

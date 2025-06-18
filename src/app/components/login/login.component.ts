@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {AuthService} from "../../services/authentication/auth.service";
+import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 
@@ -10,9 +10,9 @@ import {HttpErrorResponse} from "@angular/common/http";
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent{
-    successMessage: string = ''; // Property to hold success message
-    errorMessage: string = '';   // Property to hold error message
-    isLoading: boolean = false;  // Property to manage loading state
+    successMessage: string = '';
+    errorMessage: string = '';
+    isLoading: boolean = false;
 
     loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
