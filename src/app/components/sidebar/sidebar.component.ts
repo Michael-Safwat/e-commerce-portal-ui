@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
-import {AuthService} from "../../services/authentication/auth.service";
+import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {User} from "../../models/User";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -9,24 +11,41 @@ import {Router} from "@angular/router";
 })
 export class SidebarComponent {
 
-  constructor(private authService: AuthService,
-              private router: Router) { }
+  private userId: string = '';
+  currentUser: User | null = null;
+  userRoles: string[] = [];
+  isSuperAdmin: boolean = false;
 
+  constructor(private authService: AuthService,
+              private router: Router,
+              private userService: UserService) { }
+
+  ngOnInit(): void {
+    this.userId = this.authService.getUserIdFromToken()!;
+    this.getUserInfo();
+    this.userRoles = this.authService.getUserRolesFromToken();
+    console.log('User Roles:', this.userRoles);
+    this.isSuperAdmin = this.userRoles.includes('ROLE_SUPER_ADMIN');
+  }
+
+  getUserInfo(){
+    this.userService.getUserById(this.userId).subscribe({
+      next: (userData: User) => {
+        this.currentUser = userData;
+        console.log('User loaded:', this.currentUser);
+      },
+      error: (error) => {
+        console.error('Error fetching user:', error);
+        this.currentUser = null;
+      },
+      complete: () => {
+        console.log('User fetching complete.');
+      }
+    });
+  }
 
   logout(){
     this.authService.logout();
     this.router.navigate(['/'])
-  }
-
-  openProfile() {
-    this.router.navigate(['/profile'])
-  }
-
-  manageAdmins() {
-    this.router.navigate(['/adminsManagement'])
-  }
-
-  manageProducts() {
-    this.router.navigate(['/productsManagement'])
   }
 }

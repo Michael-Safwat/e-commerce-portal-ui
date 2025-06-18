@@ -13,7 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { AdminManagementComponent } from './components/admin-management/admin-management.component';
+import { ProductManagementComponent } from './components/product-management/product-management.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     DashboardComponent,
     SidebarComponent,
     NavbarComponent,
-    ProfileComponent,
+    AdminManagementComponent,
+    ProductManagementComponent,
   ],
   imports: [
     BrowserModule,
