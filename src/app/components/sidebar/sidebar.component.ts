@@ -51,6 +51,6 @@ export class SidebarComponent {
     document.body.style.overflow = '';
     const backdrops = document.querySelectorAll('.offcanvas-backdrop, .modal-backdrop');
     backdrops.forEach(bd => bd.remove());
-    this.router.navigate(['/'])
+    this.router.navigate(['/login'])
   }
 }
