@@ -78,6 +78,7 @@
   color: #0071e3;
   font-weight: 500;
   transition: background 0.2s, color 0.2s;
+  cursor: pointer;
 }
 .pagination .page-item.active .page-link {
   background: #eaf1fb;
