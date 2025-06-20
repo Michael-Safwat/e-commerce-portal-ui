@@ -1,0 +1,26 @@
+.offcanvas {
+  background: rgba(255,255,255,0.85) !important;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07), 0 1.5px 4px 0 rgba(0,0,0,0.03) !important;
+  border-radius: 24px !important;
+  padding: 24px 0 0 0;
+}
+.list-group {
+  gap: 18px;
+}
+.btn {
+  font-size: 1.1em;
+  border-radius: 999px !important;
+  padding: 0.7em 1.5em;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.btn-light:hover, .btn-light:focus {
+  background: #eaf1fb !important;
+  color: #0071e3 !important;
+}
+.btn-danger {
+  background: linear-gradient(90deg, #ff3b30 0%, #ff5e62 100%) !important;
+  border: none;
+}
+.btn-danger:hover, .btn-danger:focus {
+  background: linear-gradient(90deg, #ff5e62 0%, #ff3b30 100%) !important;
+}
