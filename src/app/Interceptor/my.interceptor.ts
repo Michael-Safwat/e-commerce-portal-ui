@@ -15,12 +15,20 @@ export class MyInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    const re = /login/gi;
-    const rs = /register/gi;
+    const publicEndpoints = [
+      '/api/v1/login',
+      '/api/v1/users/register'
+    ];
+
+    const isPublicEndpoint = publicEndpoints.some(url => request.url.includes(url));
     const localToken = localStorage.getItem('token');
-    if (request.url.search(re) === -1 && request.url.search(rs) === -1) {
-      request = request.clone({headers: request.headers.set('Authorization', 'Bearer ' + localToken)});
+
+    if (!isPublicEndpoint && localToken) {
+      request = request.clone({
+        headers: request.headers.set('Authorization', 'Bearer ' + localToken)
+      });
     }
+
     return next.handle(request);
   }
 }
