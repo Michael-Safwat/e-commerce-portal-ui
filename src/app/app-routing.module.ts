@@ -6,8 +6,14 @@ import {authGuard} from "./guards/auth.guard";
 import {AdminManagementComponent} from "./components/admin-management/admin-management.component";
 import {ProductManagementComponent} from "./components/product-management/product-management.component";
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SuperAdminGuard } from './guards/super-admin.guard';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -18,7 +24,7 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'productManagement', pathMatch: 'full' },
-      { path: 'adminManagement', component: AdminManagementComponent },
+      { path: 'adminManagement', component: AdminManagementComponent, canActivate: [SuperAdminGuard] },
       { path: 'productManagement', component: ProductManagementComponent }
     ]
   },
