@@ -5,6 +5,7 @@ import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {authGuard} from "./guards/auth.guard";
 import {AdminManagementComponent} from "./components/admin-management/admin-management.component";
 import {ProductManagementComponent} from "./components/product-management/product-management.component";
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    component: NotFoundComponent
   }
 ];
 

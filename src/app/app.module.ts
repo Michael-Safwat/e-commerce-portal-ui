@@ -15,6 +15,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminManagementComponent } from './components/admin-management/admin-management.component';
 import { ProductManagementComponent } from './components/product-management/product-management.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProductManagementComponent } from './components/product-management/prod
     NavbarComponent,
     AdminManagementComponent,
     ProductManagementComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

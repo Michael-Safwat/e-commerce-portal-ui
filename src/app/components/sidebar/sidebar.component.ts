@@ -46,6 +46,11 @@ export class SidebarComponent {
 
   logout(){
     this.authService.logout();
+    // Remove Bootstrap modal/offcanvas scroll locks and backdrops
+    document.body.classList.remove('modal-open', 'offcanvas-backdrop', 'offcanvas-active');
+    document.body.style.overflow = '';
+    const backdrops = document.querySelectorAll('.offcanvas-backdrop, .modal-backdrop');
+    backdrops.forEach(bd => bd.remove());
     this.router.navigate(['/'])
   }
 }

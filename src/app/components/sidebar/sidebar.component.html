@@ -1,22 +1,30 @@
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel"> Welcome {{ currentUser?.name}}</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="offcanvas offcanvas-start bg-blur shadow-xl rounded-xl p-3" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header border-0">
+    <h5 class="offcanvas-title d-flex align-items-center gap-2 fs-4" id="offcanvasExampleLabel">
+      <i class="bi bi-person-circle fs-3"></i> Welcome {{ currentUser?.name}}
+    </h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body ">
-
-    <p><strong>Email:</strong> {{ currentUser?.email }}</p>
-
+  <div class="offcanvas-body pt-0">
+    <p class="mb-4"><strong>Email:</strong> {{ currentUser?.email }}</p>
     <div>
-      <ul class="list-group">
+      <ul class="list-group gap-3">
         <li *ngIf="isSuperAdmin">
-          <button class="btn" routerLink="/dashboard/adminManagement"><i class="bi bi-briefcase"></i> manage admins</button>
+          <button class="btn btn-light d-flex align-items-center gap-2 px-3 py-2 rounded-pill w-100 text-start"
+                  routerLink="/dashboard/adminManagement" data-bs-dismiss="offcanvas">
+            <i class="bi bi-briefcase fs-5"></i> Manage Admins
+          </button>
         </li>
         <li>
-          <button class="btn" routerLink="/dashboard/productManagement"><i class="bi bi-box"></i> manage products</button>
+          <button class="btn btn-light d-flex align-items-center gap-2 px-3 py-2 rounded-pill w-100 text-start"
+                  routerLink="/dashboard/productManagement" data-bs-dismiss="offcanvas">
+            <i class="bi bi-box fs-5"></i> Manage Products
+          </button>
         </li>
         <li>
-          <button class="btn text-danger" (click)="logout()"><i class="bi bi-x-octagon"></i> sign out</button>
+          <button class="btn btn-danger d-flex align-items-center gap-2 px-3 py-2 rounded-pill w-100 text-start" (click)="logout()">
+            <i class="bi bi-x-octagon fs-5"></i> Sign Out
+          </button>
         </li>
       </ul>
     </div>

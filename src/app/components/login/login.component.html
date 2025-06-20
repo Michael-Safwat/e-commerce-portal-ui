@@ -1,11 +1,15 @@
-<div class="container-fluid h-100 ">
+<div class="container-fluid h-100 bg-light" style="min-height: 100vh;">
   <div class="row h-100">
     <div class="h-100 col d-flex align-items-center justify-content-center">
-      <div class="shadow-lg rounded-3 card col-8 p-5">
-        <h2 class="text-center mb-4">Login</h2>
+      <div class="shadow-xl rounded-xl card col-12 col-md-8 col-lg-6 p-5 px-5 py-5 border-0 bg-white">
+        <div class="text-center mb-4">
+          <i class="bi bi-person-circle fs-1 text-primary mb-2"></i>
+          <h2 class="fw-bold">Login</h2>
+        </div>
         <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-          <div class="mb-3">
-            <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email"
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control border-start-0" id="email" placeholder="Email" formControlName="email"
                    [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
                    [class.is-valid]="email.valid && (email.dirty || email.touched)">
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
@@ -13,44 +17,39 @@
               <div *ngIf="email.errors?.['email']">Please enter a valid email address.</div>
             </div>
           </div>
-          <div class="mb-3">
-              <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"
-                     [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
-                     [class.is-valid]="password.valid && (password.dirty || password.touched)">
-              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
-                <div *ngIf="password.errors?.['required']">Password is required.</div>
-              </div>
+          <div class="mb-3 input-group">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control border-start-0" id="password" placeholder="Password" formControlName="password"
+                   [class.is-invalid]="password.invalid && (password.dirty || password.touched)"
+                   [class.is-valid]="password.valid && (password.dirty || password.touched)">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+              <div *ngIf="password.errors?.['required']">Password is required.</div>
+            </div>
           </div>
-
-          <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || isLoading">
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-primary btn-lg rounded-pill" [disabled]="loginForm.invalid || isLoading">
               <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
               {{ isLoading ? 'Logging in...' : 'Login' }}
             </button>
           </div>
-          <div *ngIf="successMessage" class="alert alert-success mt-3 text-center" role="alert">
-            {{ successMessage }}
-          </div>
-          <div *ngIf="errorMessage" class="alert alert-danger mt-3 text-center" role="alert">
-            {{ errorMessage }}
-          </div>
-
         </form>
       </div>
     </div>
-
-    <div class="h-100 bg-primary col d-flex align-items-center justify-content-center">
-      <div class="text-white d-flex flex-column">
-        <h2>
+    <div class="h-100 bg-primary col d-flex align-items-center justify-content-center bg-gradient w-100" style="background: linear-gradient(120deg, #e0e7ef 0%, #f6f7f9 100%); min-height: 100vh;">
+      <div class="text-dark d-flex flex-column align-items-center w-100 h-100 justify-content-center">
+        <h2 class="fw-bold mb-2">
           Welcome to our E-commerce admin portal
         </h2>
         <div class="align-self-center">
-          <p>
+          <p class="fs-5">
             Admins portal with access to users and products management
           </p>
         </div>
       </div>
     </div>
   </div>
-
 </div>
+
+<ngb-toast *ngIf="toasts.length > 0" [header]="toasts[0].header" [class.bg-success]="toasts[0].type === 'success'" [class.bg-danger]="toasts[0].type === 'error'" [autohide]="true" [delay]="toasts[0].delay || 3000" class="position-fixed bottom-0 end-0 p-4" style="z-index: 1200; min-width: 320px;">
+  <div class="text-white">{{ toasts[0].message }}</div>
+</ngb-toast>
