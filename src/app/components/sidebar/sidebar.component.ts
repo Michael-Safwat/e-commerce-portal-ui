@@ -15,6 +15,7 @@ export class SidebarComponent {
   currentUser: User | null = null;
   userRoles: string[] = [];
   isSuperAdmin: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -25,7 +26,8 @@ export class SidebarComponent {
     this.getUserInfo();
     this.userRoles = this.authService.getUserRolesFromToken();
     console.log('User Roles:', this.userRoles);
-    this.isSuperAdmin = this.userRoles.includes('ROLE_SUPER_ADMIN');
+    this.isSuperAdmin = this.authService.hasSuperAdminRole();
+    this.isAdmin = this.authService.hasAdminRole();
   }
 
   getUserInfo(){

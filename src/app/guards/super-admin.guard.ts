@@ -10,11 +10,16 @@ export class SuperAdminGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    const userRoles = this.authService.getUserRolesFromToken();
-    if (userRoles.includes('ROLE_SUPER_ADMIN')) {
+    if (this.authService.hasSuperAdminRole()) {
       return true;
     } else {
-      this.router.navigate(['/dashboard']); // Redirect non-super-admins
+      // Redirect to dashboard if user has admin role, otherwise to login
+      if (this.authService.hasValidAdminRole()) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.authService.logout();
+        this.router.navigate(['/login']);
+      }
       return false;
     }
   }

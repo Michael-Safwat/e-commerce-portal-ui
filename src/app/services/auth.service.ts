@@ -66,6 +66,31 @@ export class AuthService {
     return []; // Return an empty array if no roles or invalid format
   }
 
+  hasAdminRole(): boolean {
+    const userRoles = this.getUserRolesFromToken();
+    const hasRole = userRoles.includes('ROLE_ADMIN');
+    console.log('Checking for ROLE_ADMIN:', hasRole, 'User roles:', userRoles);
+    return hasRole;
+  }
+
+  hasSuperAdminRole(): boolean {
+    const userRoles = this.getUserRolesFromToken();
+    const hasRole = userRoles.includes('ROLE_SUPER_ADMIN');
+    console.log('Checking for ROLE_SUPER_ADMIN:', hasRole, 'User roles:', userRoles);
+    return hasRole;
+  }
+
+  hasValidAdminRole(): boolean {
+    const hasValidRole = this.hasAdminRole() || this.hasSuperAdminRole();
+    console.log('Checking for valid admin role:', hasValidRole);
+    return hasValidRole;
+  }
+
+  isAuthenticated(): boolean {
+    const token = this.getToken();
+    return token !== null && !this.isTokenExpired();
+  }
+
   isTokenExpired(): boolean {
     const decodedToken = this.getDecodedToken();
     if (!decodedToken || !decodedToken.exp) {

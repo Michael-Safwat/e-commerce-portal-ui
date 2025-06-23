@@ -40,6 +40,14 @@
   padding: 0.5em 0.8em;
 }
 
+.role-badges .badge {
+  font-size: 0.75em;
+  padding: 0.4em 0.6em;
+  margin: 0.1em;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
 .btn {
   font-size: 1em;
   padding: 0.5em 1.2em;

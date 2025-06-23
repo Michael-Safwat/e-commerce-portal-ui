@@ -203,4 +203,17 @@ export class AdminManagementComponent implements OnInit {
   goToPage(pageNumber: number): void {
     this.getAdmins(pageNumber, this.pageSize);
   }
+
+  getRoleBadgeClass(role: string): string {
+    switch (role) {
+      case 'ROLE_SUPER_ADMIN':
+        return 'bg-danger';
+      case 'ROLE_ADMIN':
+        return 'bg-primary';
+      case 'ROLE_USER':
+        return 'bg-secondary';
+      default:
+        return 'bg-info';
+    }
+  }
 }

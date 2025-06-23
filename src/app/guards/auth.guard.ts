@@ -1,11 +1,17 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
+import {AuthService} from "../services/auth.service";
 
 export const authGuard: CanActivateFn = () => {
-  if (localStorage.getItem('token')) {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  // Check if user is authenticated and has valid admin role
+  if (authService.isAuthenticated() && authService.hasValidAdminRole()) {
     return true;
   } else {
-    const router = inject(Router);
-    return router.navigate(['login']);
+    // Clear any invalid token and redirect to login
+    authService.logout();
+    return router.navigate(['/login']);
   }
 };

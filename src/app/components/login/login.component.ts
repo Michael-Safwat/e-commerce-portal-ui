@@ -58,15 +58,23 @@ export class LoginComponent{
                 next: (res) => {
                     this.isLoading = false;
                     localStorage.setItem('token', res.token);
-                    this.showToast('Success', 'Login successful! Redirecting to profile...', 'success');
-                    // Remove Bootstrap modal/offcanvas scroll locks and backdrops
-                    document.body.classList.remove('modal-open', 'offcanvas-backdrop', 'offcanvas-active');
-                    document.body.style.overflow = '';
-                    const backdrops = document.querySelectorAll('.offcanvas-backdrop, .modal-backdrop');
-                    backdrops.forEach(bd => bd.remove());
-                    setTimeout(() => {
-                        this.router.navigate(['dashboard']);
-                    }, 1000);
+                    
+                    // Check if user has valid admin role
+                    if (this.authService.hasValidAdminRole()) {
+                        this.showToast('Success', 'Login successful! Redirecting to dashboard...', 'success');
+                        // Remove Bootstrap modal/offcanvas scroll locks and backdrops
+                        document.body.classList.remove('modal-open', 'offcanvas-backdrop', 'offcanvas-active');
+                        document.body.style.overflow = '';
+                        const backdrops = document.querySelectorAll('.offcanvas-backdrop, .modal-backdrop');
+                        backdrops.forEach(bd => bd.remove());
+                        setTimeout(() => {
+                            this.router.navigate(['dashboard']);
+                        }, 1000);
+                    } else {
+                        // User doesn't have admin role, logout and show error
+                        this.authService.logout();
+                        this.showToast('Access Denied', 'You do not have permission to access this system. Please contact your administrator.', 'error');
+                    }
                 },
                 error: (error: HttpErrorResponse) => {
                     this.isLoading = false;

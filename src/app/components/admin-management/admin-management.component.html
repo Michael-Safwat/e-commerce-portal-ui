@@ -73,6 +73,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Roles</th>
             <th>Verified</th>
             <th>Locked</th>
             <th>Actions</th>
@@ -83,6 +84,18 @@
             <td><span class="badge bg-secondary">{{ admin.id }}</span></td>
             <td><strong>{{ admin.name }}</strong></td>
             <td>{{ admin.email }}</td>
+            <td>
+              <div class="d-flex flex-wrap gap-1 role-badges">
+                <span *ngFor="let role of admin.roles" 
+                      class="badge" 
+                      [ngClass]="getRoleBadgeClass(role)">
+                  {{ role.replace('ROLE_', '') }}
+                </span>
+                <span *ngIf="!admin.roles || admin.roles.length === 0" class="text-muted small">
+                  No roles
+                </span>
+              </div>
+            </td>
             <td>
               <i class="bi" [ngClass]="admin.isVerified ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-danger'"></i>
             </td>

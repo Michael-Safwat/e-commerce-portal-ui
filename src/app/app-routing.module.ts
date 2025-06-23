@@ -7,6 +7,7 @@ import {AdminManagementComponent} from "./components/admin-management/admin-mana
 import {ProductManagementComponent} from "./components/product-management/product-management.component";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SuperAdminGuard } from './guards/super-admin.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'productManagement', pathMatch: 'full' },
       { path: 'adminManagement', component: AdminManagementComponent, canActivate: [SuperAdminGuard] },
-      { path: 'productManagement', component: ProductManagementComponent }
+      { path: 'productManagement', component: ProductManagementComponent, canActivate: [AdminGuard] }
     ]
   },
   {
